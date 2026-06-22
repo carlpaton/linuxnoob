@@ -1,3 +1,8 @@
+# Notes
+This can work with CoPilot
+
+# Commands
+
 curl -fsSL https://ollama.com/install.sh | sh
 
 ollama run gemma4:e4b
