@@ -1,11 +1,6 @@
 # Local Monitor
 nvtop
 
-# VS Code
-- API Provider: OpenAI Compatible
-- Base URL: http://localhost:8080/v1
-- Key: foo
-
 # Run llama.cpp server (Vulkan)
 
 This command starts the `llama.cpp` HTTP server in a Docker container with GPU acceleration (Vulkan), loads a GGUF model from your local `models` folder, and exposes the API on port `8080`.
@@ -60,3 +55,30 @@ After startup, the API is available at `http://localhost:8080` (and from your LA
 ## Where to download models
 
 https://huggingface.co/models?search=GGUF
+
+# VS Code
+- Ctrl+Shift+P -> `Chat: Manage Language Models`
+- Add models -> Custom Endpoint
+- Group Name -> `llama.cpp`
+- API Key -> empty
+
+```
+[
+	{
+		"name": "llama.cpp",
+		"vendor": "customendpoint",
+		"apiType": "chat-completions",
+		"models": [
+			{
+				"id": "llama.cpp",
+				"name": "llama.cpp",
+				"url": "http://localhost:8080/v1",
+				"toolCalling": true,
+				"vision": true,
+				"maxInputTokens": 128000,
+				"maxOutputTokens": 16000
+			}
+		]
+	}
+]
+```
