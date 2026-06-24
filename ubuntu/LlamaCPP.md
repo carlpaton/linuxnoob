@@ -5,6 +5,8 @@ nvtop
 
 This command starts the `llama.cpp` HTTP server in a Docker container with GPU acceleration (Vulkan), loads a GGUF model from your local `models` folder, and exposes the API on port `8080`.
 
+All params
+
 ```bash
 sudo docker run --rm -it \
 	-v ./models:/models \
@@ -16,6 +18,18 @@ sudo docker run --rm -it \
 	--no-mmap --mlock \
 	--cache-type-k q8_0 --cache-type-v q8_0 \
 	-c 90000 --host 0.0.0.0
+```
+
+Simpler version that seems to work
+
+```
+sudo docker run --rm -it \
+	-v ./models:/models \
+	--device /dev/dri:/dev/dri \
+	-p 8080:8080 \
+	ghcr.io/ggml-org/llama.cpp:server-vulkan \
+	-m /models/Qwen3.6-27B-Q4_1.gguf -ngl 999 \
+	-c 45000 --host 0.0.0.0
 ```
 
 ## What each part does
